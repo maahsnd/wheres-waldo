@@ -15,3 +15,11 @@
   width: 1300px; /* Ensure the image doesn't exceed its container's width */
   height: 800px; /* Maintain the image's aspect ratio */
 }
+
+.box {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 6px solid #000;
+  pointer-events: none;
+}
