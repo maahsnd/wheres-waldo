@@ -5,6 +5,7 @@ function Game() {
   const [targetBox, setTargetBox] = useState(null);
   const [dropdown, setDropdown] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
+  const [active, setActive] = useState(false);
   const [characters, setCharacters] = useState([
     'Waldo',
     'Woof',
@@ -18,17 +19,20 @@ function Game() {
   };
 
   const target = (e) => {
+    if (active) {
+      return;
+    }
     const image = e.currentTarget;
     const x = e.clientX;
     const y = e.clientY;
 
     // Create a new box around the click coordinates
     setTargetBox({
-      left: x - 41,
+      left: x - 56,
       top: y - 51
     });
     setDropdown({
-      left: x - 35,
+      left: x - 50,
       top: y - 45
     });
   };
@@ -48,7 +52,11 @@ function Game() {
               className={styles.dropdown}
               style={{ left: dropdown.left + 'px', top: dropdown.top + 'px' }}
             >
-              <select value={selectedOption} onChange={handleOptionChange}>
+              <select
+                value={selectedOption}
+                onChange={handleOptionChange}
+                onClick={() => setActive(true)}
+              >
                 <option value="">Character</option>
                 {characters.map((character, index) => (
                   <option key={index} value={character}>
