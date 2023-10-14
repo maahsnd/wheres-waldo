@@ -1,0 +1,43 @@
+/* welcome.module.css */
+
+/* ... (previous styles) ... */
+
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(4, 4, 4);
+  color: lightblue;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.welcomeText {
+  font-size: 24px; /* Set your desired font size */
+  text-align: center;
+  padding: 20px;
+}
+
+.welcomeButton {
+  background-color: #2ecc71; /* Set your desired button background color */
+  font-size: 20px; /* Set your desired button font size */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(99, 33, 33);
+  border-radius: 3%;
+  transition: background-color 0.3s, transform 0.1s; /* Add transitions for background color and transform properties */
+}
+
+.welcomeButton:hover {
+  background-color: #27ae60; /* Set the button's hover background color */
+}
+
+.welcomeButton:active {
+  transform: translateY(
+    2px
+  ); /* Depress the button by 2 pixels on click (adjust as needed) */
+}
