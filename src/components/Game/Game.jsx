@@ -3,6 +3,19 @@ import styles from './game.module.css?inLine';
 
 function Game() {
   const [targetBox, setTargetBox] = useState(null);
+  const [dropdown, setDropdown] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [characters, setCharacters] = useState([
+    'Waldo',
+    'Woof',
+    'Wenda',
+    'Wizard Whitebeard',
+    'Odlaw'
+  ]);
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   const target = (e) => {
     const image = e.currentTarget;
@@ -14,6 +27,10 @@ function Game() {
       left: x - 41,
       top: y - 51
     });
+    setDropdown({
+      left: x - 35,
+      top: y - 45
+    });
   };
 
   return (
@@ -21,10 +38,26 @@ function Game() {
       <div className={styles.imageContainer} onClick={target}>
         <img src="/waldo.jpeg" alt="Game Image" className={styles.gameImage} />
         {targetBox && (
-          <div
-            className={styles.box}
-            style={{ left: targetBox.left + 'px', top: targetBox.top + 'px' }}
-          ></div>
+          <>
+            {' '}
+            <div
+              className={styles.box}
+              style={{ left: targetBox.left + 'px', top: targetBox.top + 'px' }}
+            ></div>
+            <div
+              className={styles.dropdown}
+              style={{ left: dropdown.left + 'px', top: dropdown.top + 'px' }}
+            >
+              <select value={selectedOption} onChange={handleOptionChange}>
+                <option value="">Character</option>
+                {characters.map((character, index) => (
+                  <option key={index} value={character}>
+                    {character}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </>
         )}
       </div>
     </div>

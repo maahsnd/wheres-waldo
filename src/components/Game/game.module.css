@@ -18,8 +18,26 @@
 
 .box {
   position: absolute;
-  width: 70px;
+  width: 100px;
   height: 90px;
   border: 6px solid #000;
   pointer-events: none;
+}
+
+.dropdown {
+  position: absolute;
+  width: 100px; /* Set the dropdown width as needed */
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1; /* Ensure the dropdown is above other elements */
+}
+
+/* Style for dropdown select element */
+.dropdown select {
+  width: 100%;
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #f9f9f97c;
+  color: #333;
+  font-size: 16px;
 }
