@@ -19,7 +19,7 @@
 .box {
   position: absolute;
   width: 70px;
-  height: 70px;
+  height: 90px;
   border: 6px solid #000;
   pointer-events: none;
 }

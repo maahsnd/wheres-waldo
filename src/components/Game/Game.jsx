@@ -11,8 +11,8 @@ function Game() {
 
     // Create a new box around the click coordinates
     setTargetBox({
-      left: x - 35,
-      top: y - 35
+      left: x - 41,
+      top: y - 51
     });
   };
 
