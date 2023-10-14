@@ -8,6 +8,7 @@ function Game() {
   const [selectedOption, setSelectedOption] = useState('');
   const [active, setActive] = useState(false);
   const [foundMarkers, setFoundMarkers] = useState([]);
+  const [error, setError] = useState(null);
   const [characters, setCharacters] = useState([
     'Waldo',
     'Woof',
@@ -21,12 +22,16 @@ function Game() {
     //submit to backend
 
     //success
-    if (true) {
+    if (false) {
       setFoundMarkers([...foundMarkers, markerCoords]);
     }
-    //failure
-    if (false) {
+    if (true) {
+      setError({ msg: `Sorry, that's not ${e.target.value}` });
+      setTimeout(() => {
+        setError(null);
+      }, 2000);
     }
+
     setActive(false);
     setTargetBox(null);
     setDropdown(null);
@@ -39,8 +44,8 @@ function Game() {
       return;
     }
     setMarkerCoords({
-      left: e.clientX - 40 + 'px',
-      top: e.clientY + 'px'
+      left: e.clientX,
+      top: e.clientY
     });
 
     // Create a new box around the click coordinates
@@ -58,13 +63,27 @@ function Game() {
     <div className={styles.gameContainer}>
       <div className={styles.imageContainer} onClick={target}>
         <img src="/waldo.jpeg" alt="Game Image" className={styles.gameImage} />
+        {error && (
+          <div
+            className={styles.error}
+            style={{
+              left: markerCoords.left - 95 + 'px',
+              top: markerCoords.top - 10 + 'px'
+            }}
+          >
+            {error.msg}{' '}
+          </div>
+        )}
         {/* markers for found characters, if any */}
         {foundMarkers && (
           <>
             {foundMarkers.map((marker) => (
               <div
                 className={styles.foundMarker}
-                style={{ left: marker.left, top: marker.top }}
+                style={{
+                  left: marker.left + 40 + 'px',
+                  top: marker.top + 'px'
+                }}
               ></div>
             ))}
           </>
