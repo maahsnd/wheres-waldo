@@ -12,6 +12,6 @@
 }
 
 .gameImage {
-  max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+  width: 1300px; /* Ensure the image doesn't exceed its container's width */
   height: auto; /* Maintain the image's aspect ratio */
 }
