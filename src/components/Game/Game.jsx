@@ -3,6 +3,7 @@ import styles from './game.module.css?inLine';
 
 function Game() {
   const target = (e) => {
+    //dev img size is 1300 x 800
     console.log(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
   };
 

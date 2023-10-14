@@ -13,5 +13,5 @@
 
 .gameImage {
   width: 1300px; /* Ensure the image doesn't exceed its container's width */
-  height: auto; /* Maintain the image's aspect ratio */
+  height: 800px; /* Maintain the image's aspect ratio */
 }
