@@ -16,6 +16,11 @@ function Game() {
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
+    //submit to backend
+    setActive(false);
+    setTargetBox(null);
+    setDropdown(null);
+    setSelectedOption('');
   };
 
   const target = (e) => {
