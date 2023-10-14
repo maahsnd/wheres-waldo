@@ -7,26 +7,26 @@
 }
 
 .imageContainer {
-  max-width: 100%; /* Ensure the image doesn't exceed its container's width */
-  height: auto; /* Maintain the image's aspect ratio */
+  max-width: 100%;
+  height: auto;
 }
 
 .gameImage {
-  width: 1300px; /* Ensure the image doesn't exceed its container's width */
-  height: 800px; /* Maintain the image's aspect ratio */
+  width: 1300px;
+  height: 800px;
 }
 
 .box {
-  position: absolute;
-  width: 100px;
   height: 90px;
   border: 6px solid #000;
   pointer-events: none;
 }
-
+.box,
 .dropdown {
   position: absolute;
-  width: 100px; /* Set the dropdown width as needed */
+  width: 100px;
+}
+.dropdown {
   background-color: rgba(255, 255, 255, 0);
   z-index: 1; /* Ensure the dropdown is above other elements */
 }
@@ -40,4 +40,12 @@
   background-color: #f9f9f97c;
   color: #333;
   font-size: 16px;
+}
+
+.foundMarker {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #2ecc71;
+  border-radius: 50%;
 }

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import styles from './game.module.css?inLine';
 
 function Game() {
+  const [markerCoords, setMarkerCoords] = useState({});
   const [targetBox, setTargetBox] = useState(null);
   const [dropdown, setDropdown] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
   const [active, setActive] = useState(false);
+  const [foundMarkers, setFoundMarkers] = useState([]);
   const [characters, setCharacters] = useState([
     'Waldo',
     'Woof',
@@ -17,6 +19,14 @@ function Game() {
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     //submit to backend
+
+    //success
+    if (true) {
+      setFoundMarkers([...foundMarkers, markerCoords]);
+    }
+    //failure
+    if (false) {
+    }
     setActive(false);
     setTargetBox(null);
     setDropdown(null);
@@ -24,21 +34,23 @@ function Game() {
   };
 
   const target = (e) => {
+    //disable during character selection
     if (active) {
       return;
     }
-    const image = e.currentTarget;
-    const x = e.clientX;
-    const y = e.clientY;
+    setMarkerCoords({
+      left: e.clientX - 40 + 'px',
+      top: e.clientY + 'px'
+    });
 
     // Create a new box around the click coordinates
     setTargetBox({
-      left: x - 56,
-      top: y - 51
+      left: e.clientX - 56,
+      top: e.clientY - 51
     });
     setDropdown({
-      left: x - 50,
-      top: y - 45
+      left: e.clientX - 50,
+      top: e.clientY - 45
     });
   };
 
@@ -46,6 +58,18 @@ function Game() {
     <div className={styles.gameContainer}>
       <div className={styles.imageContainer} onClick={target}>
         <img src="/waldo.jpeg" alt="Game Image" className={styles.gameImage} />
+        {/* markers for found characters, if any */}
+        {foundMarkers && (
+          <>
+            {foundMarkers.map((marker) => (
+              <div
+                className={styles.foundMarker}
+                style={{ left: marker.left, top: marker.top }}
+              ></div>
+            ))}
+          </>
+        )}
+        {/* target box & dropdown menu */}
         {targetBox && (
           <>
             {' '}
