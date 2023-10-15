@@ -48,13 +48,17 @@ function Game() {
   };
 
   const target = (e) => {
+    // Calculate the coordinates relative to the image dimensions
+    const image = document.querySelector(`.${styles.gameImage}`);
+    const x = e.clientX - image.getBoundingClientRect().left;
+    const y = e.clientY - image.getBoundingClientRect().top;
     //disable during character selection
     if (active) {
       return;
     }
     setMarkerCoords({
-      left: e.clientX,
-      top: e.clientY
+      x: x,
+      y: y
     });
 
     // Create a new box around the click coordinates
@@ -90,8 +94,8 @@ function Game() {
               <div
                 className={styles.foundMarker}
                 style={{
-                  left: marker.left + 40 + 'px',
-                  top: marker.top + 'px'
+                  left: marker.x + 40 + 'px',
+                  top: marker.y + 'px'
                 }}
               ></div>
             ))}
