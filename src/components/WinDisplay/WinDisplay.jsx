@@ -5,6 +5,7 @@ const WinDisplay = () => {
   const [scores, setScores] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [winTime, setWinTime] = useState(0);
+  const [disableForm, setDisableForm] = useState(null);
 
   useEffect(() => {
     // Simulated data for demonstration
@@ -25,6 +26,7 @@ const WinDisplay = () => {
   const handleRecordScore = (e) => {
     e.preventDefault();
     setScores([...scores, { name: userInput, time: winTime }]);
+    setDisableForm(true);
     // Handle recording the user's score here
   };
 
@@ -64,7 +66,11 @@ const WinDisplay = () => {
             placeholder="Enter your name"
             className={styles.input}
           />
-          <button type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={disableForm}
+          >
             Record Score
           </button>
         </form>
