@@ -75,6 +75,7 @@ const WinDisplay = () => {
           </button>
         </form>
       </div>
+      <button>Play Again</button>
     </div>
   );
 };
