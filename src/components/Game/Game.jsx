@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles from './game.module.css?inLine';
+import WinDisplay from '../WinDisplay/WinDisplay';
 
 function Game() {
   const [markerCoords, setMarkerCoords] = useState({});
+  const [win, setWin] = useState(false);
   const [targetBox, setTargetBox] = useState(null);
   const [dropdown, setDropdown] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
@@ -21,18 +23,25 @@ function Game() {
     setSelectedOption(e.target.value);
     //submit to backend
 
+    //fill in proper if conditions in response to backend
     //success
     if (false) {
       setFoundMarkers([...foundMarkers, markerCoords]);
     }
-    if (true) {
+    //failure
+    if (false) {
       setError({ msg: `Sorry, that's not ${e.target.value}` });
       setTimeout(() => {
         setError(null);
       }, 2000);
     }
+    //win
+    if (false) {
+      setActive(true);
+      setWin(true);
+    }
 
-    setActive(false);
+    /* setActive(false); */
     setTargetBox(null);
     setDropdown(null);
     setSelectedOption('');
@@ -114,6 +123,11 @@ function Game() {
               </select>
             </div>
           </>
+        )}
+        {win && (
+          <div className={styles.winDisplay}>
+            <WinDisplay />
+          </div>
         )}
       </div>
     </div>
