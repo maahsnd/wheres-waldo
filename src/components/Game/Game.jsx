@@ -74,6 +74,8 @@ function Game() {
     }
     //win
     if (response.found && response.win) {
+      //reset found markers, otherwise they clutter win display
+      setFoundMarkers();
       setWin(true);
     }
     //enable click unless not found, in which case timeout will handle
@@ -98,7 +100,6 @@ function Game() {
     const image = document.querySelector(`.${styles.gameImage}`);
     const x = e.clientX - image.getBoundingClientRect().left;
     const y = e.clientY - image.getBoundingClientRect().top;
-    console.log('x ' + x, 'y ' + y);
 
     setMarkerCoords({
       x: x,
