@@ -69,14 +69,18 @@ function Game() {
       setError({ msg: `Sorry, that's not ${e.target.value}` });
       setTimeout(() => {
         setError(null);
-      }, 2000);
+        setActive(false);
+      }, 1500);
     }
     //win
     if (response.found && response.win) {
       setWin(true);
     }
+    //enable click unless not found, in which case timeout will handle
+    if (response.found) {
+      setActive(false);
+    }
 
-    setActive(false);
     setTargetBox(null);
     setDropdown(null);
     setSelectedOption('');
@@ -87,6 +91,9 @@ function Game() {
     if (active) {
       return;
     }
+    //disable after first click so opening select menu
+    //does not register new coordinates
+    setActive(true);
     // Calculate the coordinates relative to the image dimensions
     const image = document.querySelector(`.${styles.gameImage}`);
     const x = e.clientX - image.getBoundingClientRect().left;
@@ -100,16 +107,13 @@ function Game() {
 
     // Create a new box around the click coordinates
     setTargetBox({
-      left: e.clientX - 56,
-      top: e.clientY - 51
+      left: x - 56,
+      top: y - 51
     });
     setDropdown({
-      left: e.clientX - 50,
-      top: e.clientY - 45
+      left: x - 50,
+      top: y - 45
     });
-    //disable after first click so opening select menu
-    //does not register new coordinates
-    setActive(true);
   };
 
   if (loading)
@@ -131,8 +135,8 @@ function Game() {
           <div
             className={styles.error}
             style={{
-              left: markerCoords.x + 'px',
-              top: markerCoords.y + 'px'
+              left: markerCoords.x - 90 + 'px',
+              top: markerCoords.y - 10 + 'px'
             }}
           >
             {error.msg}{' '}
