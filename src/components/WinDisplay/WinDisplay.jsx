@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './win-display.module.css';
 import { useParams } from 'react-router-dom';
 
-const WinDisplay = () => {
+const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [winTime, setWinTime] = useState(0);
@@ -21,8 +21,8 @@ const WinDisplay = () => {
   useEffect(async () => {
     // Simulated data for demonstration
     //fetch scores, time
-    const { scores, time } = await getScores();
-    setScores(scores);
+    const { topScores, time } = await getScores();
+    setScores(topScores);
     setWinTime(time); // Sample win time
   }, []);
 
@@ -30,11 +30,24 @@ const WinDisplay = () => {
     setUserInput(e.target.value);
   };
 
-  const handleRecordScore = (e) => {
+  const handleRecordScore = async (e) => {
     e.preventDefault();
-    setScores([...scores, { name: userInput, time: winTime }]);
     setDisableForm(true);
-    // Handle recording the user's score here
+    const response = await fetch(`http://localhost:3000/games/${name}/scores`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: userInput,
+        gameId: props.gameId
+      })
+    });
+    if (!response.ok) {
+      throw new Error('Scores submission failed');
+    }
+    const data = await response.json();
+    setScores(data);
   };
 
   return (
