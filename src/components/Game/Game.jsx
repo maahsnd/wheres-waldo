@@ -183,7 +183,7 @@ function Game() {
         )}
         {win && (
           <div className={styles.winDisplay}>
-            <WinDisplay />
+            <WinDisplay gameId={game.gameId} />
           </div>
         )}
       </div>
