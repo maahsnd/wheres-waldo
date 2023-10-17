@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './game.module.css?inLine';
 import WinDisplay from '../WinDisplay/WinDisplay';
+import { useParams } from 'react-router-dom';
 
 function Game() {
   const [markerCoords, setMarkerCoords] = useState({});
@@ -14,9 +15,11 @@ function Game() {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const { name } = useParams();
+
   useEffect(() => {
     async function fetchGame() {
-      const response = await fetch('http://localhost:3000/games/waldo');
+      const response = await fetch('http://localhost:3000/games/' + name);
       if (!response.ok) {
         console.error('error fetching game');
       }

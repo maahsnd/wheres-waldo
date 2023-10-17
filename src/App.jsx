@@ -6,7 +6,7 @@ import Game from './components/Game/Game';
 
 function App() {
   const router = createBrowserRouter([
-    { path: '/game', element: <Game /> },
+    { path: '/game/:name', element: <Game /> },
     { path: '/', element: <Welcome /> }
   ]);
 
