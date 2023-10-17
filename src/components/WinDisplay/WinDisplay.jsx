@@ -50,15 +50,12 @@ const WinDisplay = () => {
             </tr>
           </thead>
           <tbody>
-            {scores
-              .sort((a, b) => a.time - b.time)
-              .slice(0, 3)
-              .map((score, index) => (
-                <tr key={index}>
-                  <td>{score.name}</td>
-                  <td>{score.time} seconds</td>
-                </tr>
-              ))}
+            {scores.map((score, index) => (
+              <tr key={index}>
+                <td>{score.name}</td>
+                <td>{score.time} seconds</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
