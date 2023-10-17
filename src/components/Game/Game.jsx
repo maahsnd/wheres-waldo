@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './game.module.css?inLine';
 import WinDisplay from '../WinDisplay/WinDisplay';
 import { useParams } from 'react-router-dom';
+import uniqid from 'uniqid';
 
 function Game() {
   const [markerCoords, setMarkerCoords] = useState({});
@@ -141,6 +142,7 @@ function Game() {
           <>
             {foundMarkers.map((marker) => (
               <div
+                key={uniqid()}
                 className={styles.foundMarker}
                 style={{
                   left: marker.x + 40 + 'px',
