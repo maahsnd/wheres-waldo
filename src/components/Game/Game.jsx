@@ -60,6 +60,7 @@ function Game() {
     const response = await submitSelection(e.target.value);
     //fill in proper if conditions in response to backend
     //successful guess
+    console.log(response.found);
     if (response.found) {
       setFoundMarkers([...foundMarkers, markerCoords]);
     }
@@ -130,8 +131,8 @@ function Game() {
           <div
             className={styles.error}
             style={{
-              left: markerCoords.left - 95 + 'px',
-              top: markerCoords.top - 10 + 'px'
+              left: markerCoords.x + 'px',
+              top: markerCoords.y + 'px'
             }}
           >
             {error.msg}{' '}
@@ -145,8 +146,8 @@ function Game() {
                 key={uniqid()}
                 className={styles.foundMarker}
                 style={{
-                  left: marker.x + 40 + 'px',
-                  top: marker.y + 'px'
+                  left: marker.x - 30 + 'px',
+                  top: marker.y - 30 + 'px'
                 }}
               ></div>
             ))}
