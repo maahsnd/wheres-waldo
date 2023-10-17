@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './game.module.css?inLine';
 import WinDisplay from '../WinDisplay/WinDisplay';
 
@@ -11,13 +11,21 @@ function Game() {
   const [active, setActive] = useState(false);
   const [foundMarkers, setFoundMarkers] = useState([]);
   const [error, setError] = useState(null);
-  const [characters, setCharacters] = useState([
-    'Waldo',
-    'Woof',
-    'Wenda',
-    'Wizard Whitebeard',
-    'Odlaw'
-  ]);
+  const [game, setGame] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchGame() {
+      const response = await fetch('http://localhost:3000/games/waldo');
+      if (!response.ok) {
+        console.error('error fetching game');
+      }
+      const data = await response.json();
+      setGame({ img_link: data.img_link, characters: data.characters });
+      setLoading(false);
+    }
+    fetchGame();
+  }, []);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -72,10 +80,21 @@ function Game() {
     });
   };
 
+  if (loading)
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+
   return (
     <div className={styles.gameContainer}>
       <div className={styles.imageContainer} onClick={target}>
-        <img src="/waldo.jpeg" alt="Game Image" className={styles.gameImage} />
+        <img
+          src={game.img_link}
+          alt="Game Image"
+          className={styles.gameImage}
+        />
         {error && (
           <div
             className={styles.error}
@@ -119,7 +138,7 @@ function Game() {
                 onClick={() => setActive(true)}
               >
                 <option value="">Character</option>
-                {characters.map((character, index) => (
+                {game.characters.map((character, index) => (
                   <option key={index} value={character}>
                     {character}
                   </option>
