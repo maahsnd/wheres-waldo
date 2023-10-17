@@ -20,10 +20,10 @@ const WinDisplay = (props) => {
 
   useEffect(async () => {
     // Simulated data for demonstration
-    //fetch scores, time
-    const { topScores, time } = await getScores();
+    //fetch scores
+    const topScores = await getScores();
     setScores(topScores);
-    setWinTime(time); // Sample win time
+    setWinTime(Date.now());
   }, []);
 
   const handleNameChange = (e) => {
@@ -40,7 +40,8 @@ const WinDisplay = (props) => {
       },
       body: JSON.stringify({
         name: userInput,
-        gameId: props.gameId
+        gameId: props.gameId,
+        winTime: winTime
       })
     });
     if (!response.ok) {
