@@ -21,9 +21,9 @@ const WinDisplay = () => {
   useEffect(async () => {
     // Simulated data for demonstration
     //fetch scores, time
-    const scores = await getScores();
+    const { scores, time } = await getScores();
     setScores(scores);
-    setWinTime(42); // Sample win time
+    setWinTime(time); // Sample win time
   }, []);
 
   const handleNameChange = (e) => {
