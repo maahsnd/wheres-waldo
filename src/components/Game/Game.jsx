@@ -28,7 +28,8 @@ function Game() {
       setGame({
         img_link: data.img_link,
         characters: data.characters,
-        gameId: data.gameId
+        gameId: data.gameId,
+        currentgameId: data.currentgameId
       });
       setLoading(false);
     }
@@ -60,7 +61,6 @@ function Game() {
     const response = await submitSelection(e.target.value);
     //fill in proper if conditions in response to backend
     //successful guess
-    console.log(response.found);
     if (response.found) {
       setFoundMarkers([...foundMarkers, markerCoords]);
     }
@@ -183,7 +183,10 @@ function Game() {
         )}
         {win && (
           <div className={styles.winDisplay}>
-            <WinDisplay gameId={game.gameId} />
+            <WinDisplay
+              gameId={game.gameId}
+              currentgameId={game.currentgameId}
+            />
           </div>
         )}
       </div>

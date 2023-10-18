@@ -41,7 +41,7 @@ const WinDisplay = (props) => {
       body: JSON.stringify({
         username: userInput,
         gameId: props.gameId,
-        game: name,
+        currentGameId: props.currentGameId,
         winTime: winTime
       })
     });
