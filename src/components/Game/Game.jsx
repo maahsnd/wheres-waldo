@@ -45,7 +45,7 @@ function Game() {
       body: JSON.stringify({
         character: selection,
         coords: markerCoords,
-        gameId: game.gameId
+        currentgameId: game.currentgameId
       })
     });
     if (!response.ok) {
