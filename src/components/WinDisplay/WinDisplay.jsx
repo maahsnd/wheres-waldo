@@ -9,21 +9,31 @@ const WinDisplay = (props) => {
   const [disableForm, setDisableForm] = useState(null);
   const { name } = useParams();
 
-  const getScores = async () => {
-    const response = await fetch(`http://localhost:3000/games/${name}/scores`);
-    if (!response.ok) {
-      throw new Error('Scores fetch failed');
-    }
-    const data = await response.json();
-    return data;
-  };
-
-  useEffect(async () => {
+  useEffect(() => {
     // Simulated data for demonstration
     //fetch scores
-    const topScores = await getScores();
-    setScores(topScores);
-    setWinTime(Date.now());
+    const getScores = async () => {
+      const response = await fetch(
+        `http://localhost:3000/games/${name}/scores`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            gameId: props.gameId
+          })
+        }
+      );
+      if (!response.ok) {
+        throw new Error('Scores fetch failed');
+      }
+      const data = await response.json();
+      setScores(data);
+      setWinTime(Date.now());
+      return data;
+    };
+    getScores();
   }, []);
 
   const handleNameChange = (e) => {
