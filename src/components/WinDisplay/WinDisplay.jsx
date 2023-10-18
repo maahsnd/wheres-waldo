@@ -65,8 +65,8 @@ const WinDisplay = (props) => {
             </tr>
           </thead>
           <tbody>
-            {scores.map((score, index) => (
-              <tr key={index}>
+            {scores.map((score) => (
+              <tr key={score._id}>
                 <td>{score.name}</td>
                 <td>{score.time} seconds</td>
               </tr>
