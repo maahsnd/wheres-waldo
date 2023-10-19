@@ -19,10 +19,7 @@ const WinDisplay = (props) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            gameId: props.gameId
-          })
+          }
         }
       );
       if (!response.ok) {

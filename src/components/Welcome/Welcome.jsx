@@ -9,7 +9,7 @@ function Welcome() {
       <p className={styles.welcomeText}>
         Click the button below to find Waldo and more characters in the picture.
       </p>
-      <Link to="/game/waldo">
+      <Link to="/games/waldo">
         <button className={styles.welcomeButton}>Find Waldo</button>
       </Link>
     </div>
