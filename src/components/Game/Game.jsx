@@ -79,7 +79,7 @@ function Game() {
       setWin(true);
     }
     //enable click unless not found, in which case timeout will handle
-    if (response.found) {
+    if (response.found && !response.win) {
       setActive(false);
     }
 
