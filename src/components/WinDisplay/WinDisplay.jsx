@@ -10,8 +10,8 @@ const WinDisplay = (props) => {
   const { name } = useParams();
 
   useEffect(() => {
-    // Simulated data for demonstration
     //fetch scores
+    setWinTime(Date.now());
     const getScores = async () => {
       const response = await fetch(
         `http://localhost:3000/games/${name}/scores`,
@@ -27,7 +27,7 @@ const WinDisplay = (props) => {
       }
       const data = await response.json();
       setScores(data);
-      setWinTime(Date.now());
+
       return data;
     };
     getScores();
@@ -48,7 +48,7 @@ const WinDisplay = (props) => {
       body: JSON.stringify({
         username: userInput,
         gameId: props.gameId,
-        currentGameId: props.currentGameId,
+        currentgameId: props.currentgameId,
         winTime: winTime
       })
     });
