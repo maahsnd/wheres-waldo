@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './win-display.module.css';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
@@ -102,8 +102,9 @@ const WinDisplay = (props) => {
           </form>
         </div>
       )}
-
-      <button>Play Again</button>
+      <Link to="/">
+        <button>Play Again</button>
+      </Link>
     </div>
   );
 };
