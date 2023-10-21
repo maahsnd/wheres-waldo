@@ -81,26 +81,28 @@ const WinDisplay = (props) => {
           </tbody>
         </table>
       </div>
+      {!disableForm && (
+        <div className={styles.recordScore}>
+          <h2>Record Your Score</h2>
+          <form onSubmit={handleRecordScore}>
+            <input
+              type="text"
+              value={userInput}
+              onChange={handleNameChange}
+              placeholder="Enter your name"
+              className={styles.input}
+            />
+            <button
+              type="submit"
+              className={styles.button}
+              disabled={disableForm}
+            >
+              Record Score
+            </button>
+          </form>
+        </div>
+      )}
 
-      <div className={styles.recordScore}>
-        <h2>Record Your Score</h2>
-        <form onSubmit={handleRecordScore}>
-          <input
-            type="text"
-            value={userInput}
-            onChange={handleNameChange}
-            placeholder="Enter your name"
-            className={styles.input}
-          />
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={disableForm}
-          >
-            Record Score
-          </button>
-        </form>
-      </div>
       <button>Play Again</button>
     </div>
   );
