@@ -4,31 +4,50 @@ import { Link, useParams } from 'react-router-dom';
 
 const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
+  const [scoreId, setScoreId] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [winTime, setWinTime] = useState(0);
+  const [userScore, setUserScore] = useState(0);
   const [disableForm, setDisableForm] = useState(null);
   const { name } = useParams();
 
   useEffect(() => {
     //fetch scores
-    setWinTime(Date.now());
     const getScores = async () => {
-      const response = await fetch(
-        `http://localhost:3000/games/${name}/scores`,
-        {
+      const [scoreGetRes, scorePostRes] = await Promise.all([
+        fetch(`http://localhost:3000/games/${name}/scores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           }
-        }
-      );
-      if (!response.ok) {
+        }),
+        fetch(`http://localhost:3000/games/${name}/scores`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            currentgameId: props.currentgameId,
+            winTime: Date.now(),
+            gameId: props.gameId
+          })
+        })
+      ]);
+      if (!scoreGetRes.ok) {
         throw new Error('Scores fetch failed');
       }
-      const data = await response.json();
-      setScores(data);
+      if (!scorePostRes.ok) {
+        throw new Error('User score post failed');
+      }
+      const [hiScoreData, userScoreData] = await Promise.all([
+        scoreGetRes.json(),
+        scorePostRes.json()
+      ]);
+      setScores(hiScoreData);
+      setUserScore(userScoreData.time);
+      setScoreId(userScoreData.scoreId);
 
-      return data;
+      return;
     };
     getScores();
   }, []);
@@ -40,18 +59,21 @@ const WinDisplay = (props) => {
   const handleRecordScore = async (e) => {
     e.preventDefault();
     setDisableForm(true);
-    const response = await fetch(`http://localhost:3000/games/${name}/scores`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: userInput,
-        gameId: props.gameId,
-        currentgameId: props.currentgameId,
-        winTime: winTime
-      })
-    });
+    const response = await fetch(
+      `http://localhost:3000/games/${name}/scores/username`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: userInput,
+          gameId: props.gameId,
+          scoreId: scoreId,
+          time: userScore
+        })
+      }
+    );
     if (!response.ok) {
       throw new Error('Scores submission failed');
     }
@@ -62,6 +84,7 @@ const WinDisplay = (props) => {
   return (
     <div className={styles.highscoresContainer}>
       <h1 className={styles.congratulations}>Congratulations!</h1>
+      <h2>Your time {userScore}</h2>
       <div className={styles.highScores}>
         <h2>High Scores</h2>
         <table>
