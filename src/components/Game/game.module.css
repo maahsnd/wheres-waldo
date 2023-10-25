@@ -1,0 +1,84 @@
+.gameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.imageContainer {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.gameImage {
+  width: 1300px;
+  height: 800px;
+}
+
+.box {
+  height: 90px;
+  border: 6px solid #000;
+  pointer-events: none;
+}
+.box,
+.dropdown {
+  position: absolute;
+  width: 100px;
+}
+.dropdown {
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1; /* Ensure the dropdown is above other elements */
+}
+
+/* Style for dropdown select element */
+.dropdown select {
+  width: 100%;
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #f9f9f97c;
+  color: #333;
+  font-size: 16px;
+}
+
+.foundMarker {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #2ecc71;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.error {
+  position: absolute;
+  background-color: red;
+  font-size: 20px;
+  border: 2px black solid;
+  border-radius: 5px;
+  padding: 3px;
+  width: fit-content;
+  height: 20px;
+  text-align: center;
+}
+
+.winDisplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: red;
+  color: black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.winDisplay h1 {
+  font-size: 36px;
+}
+
+.winDisplay p {
+  font-size: 24px;
+}
