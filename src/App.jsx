@@ -1,14 +1,8 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Welcome from './components/Welcome/Welcome';
-import Game from './components/Game/Game';
-
 function App() {
-  const router = createBrowserRouter([
-    { path: '/games/:name/', element: <Game /> },
-    { path: '/', element: <Welcome /> }
-  ]);
+  const router = createBrowserRouter([{ path: '/', element: <Home /> }]);
 
   return <RouterProvider router={router} />;
 }
