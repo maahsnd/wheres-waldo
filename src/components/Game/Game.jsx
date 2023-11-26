@@ -16,11 +16,9 @@ function Game() {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { name } = useParams();
-
   useEffect(() => {
     async function fetchGame() {
-      const response = await fetch('http://localhost:3000/games/' + name);
+      const response = await fetch('http://localhost:3000/games/waldo' );
       if (!response.ok) {
         console.error('error fetching game');
       }
