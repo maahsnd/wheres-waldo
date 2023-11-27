@@ -13,13 +13,13 @@ const WinDisplay = (props) => {
     //fetch scores
     const getScores = async () => {
       const [scoreGetRes, scorePostRes] = await Promise.all([
-        fetch(`http:///games/${name}/scores`, {
+        fetch(`https:///games/waldo/scores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           }
         }),
-        fetch(`http://waldobackend-production.up.railway.app/games/waldo/scores`, {
+        fetch(`https://waldobackend-production.up.railway.app/games/waldo/scores`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
