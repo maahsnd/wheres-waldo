@@ -6,7 +6,7 @@ const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
   const [scoreId, setScoreId] = useState(null);
   const [userInput, setUserInput] = useState('');
-  const [userScore, setUserScore] = useState(0);
+  const [userScore, setUserScore] = useState('-');
   const [disableForm, setDisableForm] = useState(null);
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const WinDisplay = (props) => {
         </div>
       )}
       <Link to="/">
-        <button>Play Again</button>
+        <button className={styles.playAgainBtn}>Play Again</button>
       </Link>
     </div>
   );
