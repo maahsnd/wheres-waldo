@@ -83,7 +83,7 @@ const WinDisplay = (props) => {
     <div className={styles.highscoresContainer}>
       <h1 className={styles.congratulations}>Congratulations!</h1>
       <h2>Your time {userScore}s</h2>
-      <div className={styles.highScores}>
+      {scores.length > 0 && <div className={styles.highScores}>
         <h2>High Scores</h2>
         <table>
           <thead>
@@ -93,15 +93,16 @@ const WinDisplay = (props) => {
             </tr>
           </thead>
           <tbody>
-            { scores && scores.map((score) => (
+            { scores.map((score) => (
               <tr key={score._id}>
                 <td>{score.name}</td>
                 <td>{score.time}s</td>
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </table>  </div>}
+      
+     
       {!disableForm && (
         <div className={styles.recordScore}>
           <h2>Record Your Score</h2>
