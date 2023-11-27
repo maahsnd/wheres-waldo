@@ -35,7 +35,7 @@ function Game() {
   }, []);
 
   const submitSelection = async (selection) => {
-    const response = await fetch(`http://waldobackend-production.up.railway.app/games/${name}/coords`, {
+    const response = await fetch(`http://waldobackend-production.up.railway.app/games/waldo/coords`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

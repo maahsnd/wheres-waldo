@@ -6,22 +6,20 @@ const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
   const [scoreId, setScoreId] = useState(null);
   const [userInput, setUserInput] = useState('');
-  const [winTime, setWinTime] = useState(0);
   const [userScore, setUserScore] = useState(0);
   const [disableForm, setDisableForm] = useState(null);
-  const { name } = useParams();
 
   useEffect(() => {
     //fetch scores
     const getScores = async () => {
       const [scoreGetRes, scorePostRes] = await Promise.all([
-        fetch(`http://waldobackend-production.up.railway.app/games/${name}/scores`, {
+        fetch(`http:///games/${name}/scores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           }
         }),
-        fetch(`http://waldobackend-production.up.railway.app/games/${name}/scores`, {
+        fetch(`http://waldobackend-production.up.railway.app/games/waldo/scores`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -60,7 +58,7 @@ const WinDisplay = (props) => {
     e.preventDefault();
     setDisableForm(true);
     const response = await fetch(
-      `http://waldobackend-production.up.railway.app/games/${name}/scores/username`,
+      `http://waldobackend-production.up.railway.app/games/waldo/scores/username`,
       {
         method: 'POST',
         headers: {
