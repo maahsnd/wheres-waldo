@@ -58,7 +58,7 @@ const WinDisplay = (props) => {
     e.preventDefault();
     setDisableForm(true);
     const response = await fetch(
-      `http://waldobackend-production.up.railway.app/games/waldo/scores/username`,
+      `https://waldobackend-production.up.railway.app/games/waldo/scores/username`,
       {
         method: 'POST',
         headers: {
