@@ -55,6 +55,10 @@ button {
   margin-bottom: 10px;
 }
 
+.playAgainBtn {
+  margin-top: 10px;
+}
+
 button:hover {
   background-color: #2ecc71;
 }

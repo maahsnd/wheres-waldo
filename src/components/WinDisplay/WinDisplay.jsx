@@ -6,22 +6,20 @@ const WinDisplay = (props) => {
   const [scores, setScores] = useState([]);
   const [scoreId, setScoreId] = useState(null);
   const [userInput, setUserInput] = useState('');
-  const [winTime, setWinTime] = useState(0);
-  const [userScore, setUserScore] = useState(0);
+  const [userScore, setUserScore] = useState('-');
   const [disableForm, setDisableForm] = useState(null);
-  const { name } = useParams();
 
   useEffect(() => {
     //fetch scores
     const getScores = async () => {
       const [scoreGetRes, scorePostRes] = await Promise.all([
-        fetch(`http://localhost:3000/games/${name}/scores`, {
+        fetch(`https://waldobackend-production.up.railway.app/games/waldo/scores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           }
         }),
-        fetch(`http://localhost:3000/games/${name}/scores`, {
+        fetch(`https://waldobackend-production.up.railway.app/games/waldo/scores`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -60,7 +58,7 @@ const WinDisplay = (props) => {
     e.preventDefault();
     setDisableForm(true);
     const response = await fetch(
-      `http://localhost:3000/games/${name}/scores/username`,
+      `https://waldobackend-production.up.railway.app/games/waldo/scores/username`,
       {
         method: 'POST',
         headers: {
@@ -84,8 +82,8 @@ const WinDisplay = (props) => {
   return (
     <div className={styles.highscoresContainer}>
       <h1 className={styles.congratulations}>Congratulations!</h1>
-      <h2>Your time {userScore}</h2>
-      <div className={styles.highScores}>
+      <h2>Your time {userScore}s</h2>
+      {scores.length > 0 && <div className={styles.highScores}>
         <h2>High Scores</h2>
         <table>
           <thead>
@@ -95,15 +93,16 @@ const WinDisplay = (props) => {
             </tr>
           </thead>
           <tbody>
-            {scores.map((score) => (
+            { scores.map((score) => (
               <tr key={score._id}>
                 <td>{score.name}</td>
-                <td>{score.time} seconds</td>
+                <td>{score.time}s</td>
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </table>  </div>}
+      
+     
       {!disableForm && (
         <div className={styles.recordScore}>
           <h2>Record Your Score</h2>
@@ -126,7 +125,7 @@ const WinDisplay = (props) => {
         </div>
       )}
       <Link to="/">
-        <button>Play Again</button>
+        <button className={styles.playAgainBtn}>Play Again</button>
       </Link>
     </div>
   );

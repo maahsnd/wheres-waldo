@@ -1,14 +1,10 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
 import Welcome from './components/Welcome/Welcome';
 import Game from './components/Game/Game';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 function App() {
-  const router = createBrowserRouter([
-    { path: '/games/:name/', element: <Game /> },
-    { path: '/', element: <Welcome /> }
-  ]);
+  const router = createBrowserRouter([{ path: '/', element: <Welcome /> }, {path: '/games/waldo', element: <Game/>}]);
 
   return <RouterProvider router={router} />;
 }
