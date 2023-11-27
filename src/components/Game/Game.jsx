@@ -18,7 +18,7 @@ function Game() {
 
   useEffect(() => {
     async function fetchGame() {
-      const response = await fetch('http://waldobackend-production.up.railway.app/games/waldo' );
+      const response = await fetch('https://waldobackend-production.up.railway.app/games/waldo' );
       if (!response.ok) {
         console.error('error fetching game');
       }
@@ -35,7 +35,7 @@ function Game() {
   }, []);
 
   const submitSelection = async (selection) => {
-    const response = await fetch(`http://waldobackend-production.up.railway.app/games/waldo/coords`, {
+    const response = await fetch(`https://waldobackend-production.up.railway.app/games/waldo/coords`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
