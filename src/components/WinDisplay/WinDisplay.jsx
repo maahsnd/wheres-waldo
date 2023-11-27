@@ -15,13 +15,13 @@ const WinDisplay = (props) => {
     //fetch scores
     const getScores = async () => {
       const [scoreGetRes, scorePostRes] = await Promise.all([
-        fetch(`http://localhost:3000/games/${name}/scores`, {
+        fetch(`http://waldobackend-production.up.railway.app/games/${name}/scores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           }
         }),
-        fetch(`http://localhost:3000/games/${name}/scores`, {
+        fetch(`http://waldobackend-production.up.railway.app/games/${name}/scores`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const WinDisplay = (props) => {
     e.preventDefault();
     setDisableForm(true);
     const response = await fetch(
-      `http://localhost:3000/games/${name}/scores/username`,
+      `http://waldobackend-production.up.railway.app/games/${name}/scores/username`,
       {
         method: 'POST',
         headers: {
