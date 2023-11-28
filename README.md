@@ -8,7 +8,7 @@ Live preview: https://wheres-waldo.pages.dev/
 
 Backend/API Repo: https://github.com/maahsnd/waldoBackend
 
-! [] (https://github.com/maahsnd/wheres-waldo/src/preview.gif)
+![] (https://github.com/maahsnd/wheres-waldo/src/preview.gif)
 
 ## Built with
 
